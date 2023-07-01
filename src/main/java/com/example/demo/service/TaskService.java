@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.model.Task1;
 import com.example.demo.model.User1;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface TaskService {
@@ -14,7 +15,9 @@ public interface TaskService {
 
     Optional<Task1> changeStId(Long id, Long student_id);
 
-    //void MakeTrue(Long id);
+    List<Task1> getCurrentUserTasks();
 
-    //void  MakeFalse(Long id);
+    void MakeTrue(Long id);
+
+    void  MakeFalse(Long id);
 }

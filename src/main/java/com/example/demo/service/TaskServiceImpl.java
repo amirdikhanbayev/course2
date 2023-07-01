@@ -5,12 +5,15 @@ import com.example.demo.repository.Task1Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class TaskServiceImpl implements TaskService{
     @Autowired
     private Task1Repository task1Repository;
+    @Autowired
+    private UserService userService;
 
     @Override
     public Task1 createTask(Task1 task1){
@@ -30,12 +33,15 @@ public class TaskServiceImpl implements TaskService{
         //сделать изменение student_id
         return null;
     }
-//    @Override
-//    public void MakeTrue(Long id){
-//        task1Repository.MakeAsDone(id);
-//    }
-//    @Override
-//    public void  MakeFalse(Long id){
-//        task1Repository.MakeAsFalse(id);
-//    }
+    @Override
+    public List<Task1> getCurrentUserTasks() {
+        return task1Repository.findBystudent_id(userService.getCurrentUser().getId());}
+    @Override
+    public void MakeTrue(Long id){
+        task1Repository.MakeAsDone(id);
+    }
+    @Override
+    public void  MakeFalse(Long id){
+        task1Repository.MakeAsFalse(id);
+    }
 }
