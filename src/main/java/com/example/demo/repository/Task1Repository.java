@@ -14,12 +14,12 @@ import java.util.List;
 @Repository
 @Transactional
 public interface Task1Repository extends JpaRepository<Task1, Long> {
-    List<Task1> findBystudent_id(Long student_id);
+    List<Task1> findByStudentId(Long student_id);
     @Modifying
-    @Query("UPDATE task1 t SET t.done = TRUE WERE t.id = :id")
+    @Query("UPDATE Task1 t SET t.done = TRUE WHERE t.id = :id")
     public void MakeAsDone(@Param("id") Long id);
 
     @Modifying
-    @Query("UPDATE task1 t SET t.done = FALSE WERE t.id = :id")
+    @Query("UPDATE Task1 t SET t.done = FALSE WHERE t.id = :id")
     public void MakeAsFalse(@Param("id") Long id);
 }

@@ -1,9 +1,6 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -15,7 +12,8 @@ public class Task1 {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     private String task;
-    private String student_id;
+    @Column(name="student_id")
+    private Long studentId;
     private LocalDate date;
     private Boolean done;
 }
