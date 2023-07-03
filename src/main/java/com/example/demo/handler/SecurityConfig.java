@@ -34,8 +34,9 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         sharedSecurityConfiguration(http);
         http.authorizeRequests()
-                .requestMatchers("/task*").hasAnyRole("ADMIN","TEACHER","STUDENT")
-                .requestMatchers("/user*").hasRole("ADMIN")
+                .requestMatchers("/user/createUser").permitAll()
+//                .requestMatchers("/task*").hasAnyRole("TEACHER","STUDENT")
+//                .requestMatchers("/user*").hasRole("ADMIN")
                 .anyRequest().authenticated().and()
                 .formLogin(form -> form.loginProcessingUrl("/login")
                         .usernameParameter("login")

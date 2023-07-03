@@ -15,7 +15,7 @@ public class TaskServiceImpl implements TaskService{
     @Autowired
     private Task1Repository task1Repository;
     @Autowired
-    private UserService userService;
+    private GetService getService;
 
     @Override
     public Task1 createTask(Task1 task1){
@@ -41,7 +41,7 @@ public class TaskServiceImpl implements TaskService{
     }
     @Override
     public List<Task1> getCurrentUserTasks() {
-        return task1Repository.findByStudentId(userService.getCurrentUser().getId());}
+        return task1Repository.findByStudentId(getService.getCurrentUser().getId());}
     @Override
     public void MakeTrue(Long id){
         task1Repository.MakeAsDone(id);

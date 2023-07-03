@@ -12,8 +12,8 @@ public class Task1 {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     private String task;
+    private LocalDate date;
+    private Boolean done = Boolean.FALSE;
     @Column(name="student_id")
     private Long studentId;
-    private LocalDate date;
-    private Boolean done;
 }

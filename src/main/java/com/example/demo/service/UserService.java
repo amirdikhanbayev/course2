@@ -19,5 +19,5 @@ public interface UserService {
 
     User1 save(User1 user1);
 
-    User1 getCurrentUser();
+//    User1 getCurrentUser();
 }

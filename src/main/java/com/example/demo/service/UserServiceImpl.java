@@ -17,6 +17,8 @@ public class UserServiceImpl implements UserService {
     private User1Repository user1Repository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private GetService getService;
     @Override
     public User1 create(User1 user1){
         user1.setPassword(passwordEncoder.encode(user1.getPassword()));
@@ -40,6 +42,7 @@ public class UserServiceImpl implements UserService {
         return user1Repository.findById(id);
     }
 
+
     @Override
     public User1 save(User1 user1){
         User1 old = user1Repository.findById(user1.getId()).orElse(new User1());
@@ -49,13 +52,6 @@ public class UserServiceImpl implements UserService {
         Optional.ofNullable(user1.getPassword()).ifPresent(old::setPassword);
         return user1Repository.save(old);
     }
-    @Override
-    public User1 getCurrentUser() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        org.springframework.security.core.userdetails.User principal =
-                (org.springframework.security.core.userdetails.User) authentication.getPrincipal();
-        return user1Repository.findByUsername(principal.getUsername())
-                .orElseThrow(() -> new IllegalArgumentException("user not found"));
-    }
+
 
 }
