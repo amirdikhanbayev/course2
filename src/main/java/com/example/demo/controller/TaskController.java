@@ -24,42 +24,44 @@ public class TaskController {
     @PostMapping("/create")
     @PreAuthorize("hasRole('TEACHER')")
     public Task1 create(@RequestBody Task1 task1){
+        //done (JSON - studentId)
         return taskService.createTask(task1);
     }
     @DeleteMapping("/deleteTask/{id}")
     @PreAuthorize("hasRole('TEACHER')")
+    //done
     public void deleteTask(@PathVariable Long id){
         taskService.deleteTask(id);
     }
 
     @PutMapping("/changeTask/{id}/{task}")
     @PreAuthorize("hasRole('TEACHER')")
+    //done
     public Optional<Task1> changeT(@PathVariable Long id, @PathVariable String task){
         return taskService.changeTask(id,task);
     }
     @PutMapping("/changeStId/{id}/{student_id}")
     @PreAuthorize("hasRole('TEACHER')")
+    //done
     public Optional<Task1> changeStId(@PathVariable Long id, @PathVariable Long student_id){
         return taskService.changeStId(id,student_id);
     }
     @GetMapping("/getAll")
     @PreAuthorize("hasRole('TEACHER')")
+    //done
     public List<Task1> getAllTask(){
         return taskService.getCurrentUserTasks();
     }
     @PutMapping("/makeDone/{id}")
     @PreAuthorize("hasRole('STUDENT')")
+    //done
     public void done(@PathVariable Long id){
         taskService.MakeTrue(id);
     }
     @PutMapping("/makeFalse/{id}")
     @PreAuthorize("hasRole('TEACHER')")
+    //done
     public void unfulfilled(@PathVariable Long id){
         taskService.MakeFalse(id);
-    }
-    @GetMapping("/getCurr")
-    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER','STUDENT')")
-    public User1 getMe (){
-        return getService.getCurrentUser();
     }
 }

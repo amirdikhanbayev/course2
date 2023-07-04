@@ -10,7 +10,7 @@ import java.time.LocalDate;
 public class Task1 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
     private String task;
     private LocalDate date;
     private Boolean done = Boolean.FALSE;

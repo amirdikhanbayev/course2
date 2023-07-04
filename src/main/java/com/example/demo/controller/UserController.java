@@ -19,36 +19,43 @@ public class UserController {
     private GetService getService;
 
     @PostMapping("/createUser")
+    //done
     public User1 createUser(@RequestBody User1 user){
         return userService.create(user);
     }
     @DeleteMapping("/deleteUser/{id}")
     @PreAuthorize("hasRole('ADMIN')")
+    //done
     public void deleteUser(@PathVariable Long id){
         userService.delete(id);
     }
     @GetMapping("/listall")
     @PreAuthorize("hasRole('ADMIN')")
+    //done
     public List<User1> listALl(){
         return userService.findAll();
     }
     @GetMapping("/findUser/{username}")
     @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER')")
+    //done
     public Optional<User1> findByUsername(@PathVariable String username){
         return userService.findByUsername(username);
     }
     @GetMapping("/findUserById/{id}")
     @PreAuthorize("hasRole('ADMIN')")
+    //done
     public Optional<User1> findByIdUser(@PathVariable Long id){
         return userService.findById(id);
     }
     @PutMapping("/ChangeUser")
     @PreAuthorize("hasRole('ADMIN')")
+    //done
     public User1 changeUser(@RequestBody User1 user){
         return userService.save(user);
     }
     @GetMapping("/me")
     @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER')")
+    //done
     public User1 getMe (){
         return getService.getCurrentUser();
     }
