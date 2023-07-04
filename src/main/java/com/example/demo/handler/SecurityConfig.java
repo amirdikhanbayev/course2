@@ -10,6 +10,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
@@ -20,7 +21,8 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@EnableMethodSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class SecurityConfig {
     @Autowired
     private UserDetailServiceImpl userDetailService;
@@ -36,7 +38,9 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         sharedSecurityConfiguration(http);
         http.authorizeRequests()
-                .requestMatchers("/user/createUser").permitAll()
+                .requestMatchers("user/logout").permitAll()
+                .requestMatchers("user/createUser").permitAll()
+                .requestMatchers("user/me").permitAll()
 //                .requestMatchers("/task*").hasAnyRole("TEACHER","STUDENT")
 //                .requestMatchers("/user*").hasRole("ADMIN")
                 .anyRequest().authenticated().and()
